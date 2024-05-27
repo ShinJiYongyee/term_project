@@ -7,7 +7,7 @@ $phase = $_POST["phase"];
 $employee = $_POST["employee"];
 $deadline = $_POST["deadline"];
 
-$sql =" INSERT INTO projectTBL VALUES ('".$projectname."','".$intel."',''".$phase."','".$employee."','".$deadline."')";
+$sql = "INSERT INTO projectTBL (projectname, intel, phase, employee, deadline) VALUES ('$projectname', '$intel', '$phase', '$employee', '$deadline')";
 
 $ret = mysqli_query($con, $sql);
 
