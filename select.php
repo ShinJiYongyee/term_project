@@ -25,8 +25,8 @@ while($row = mysqli_fetch_array($ret)) {
     echo "<TD>", $row['phase'], "</TD>";
     echo "<TD>", $row['employee'], "</TD>";
     echo "<TD>", $row['deadline'], "</TD>";
-    echo "<TD>", "<A HREF='update.php?userID=", $row['userID'], "'>수정</A></TD>";
-    echo "<TD>", "<A HREF='delete.php?userID=", $row['userID'], "'>삭제</A></TD>";
+    echo "<TD>", "<A HREF='update.php?projectname=", $row['projectname'], "'>수정</A></TD>";
+    echo "<TD>", "<A HREF='delete.php?projectname=", $row['projectname'], "'>삭제</A></TD>";
     echo "</TR>";
 }
 
