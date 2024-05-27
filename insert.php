@@ -11,7 +11,7 @@
     단계 : <INPUT TYPE="text" NAME="phase"> <BR>
     직원 : <INPUT TYPE="text" NAME="employee"> <BR>
     직원 : <INPUT TYPE="text" NAME="employee"> <BR>
-    날짜 : <INPUT TYPE="text" NAME="date"> <BR>
+    날짜 : <INPUT TYPE="text" NAME="deadline"> <BR>
     <BR><BR>
     <INPUT TYPE="submit" VALUE="정보 입력">
 </FORM>
