@@ -32,7 +32,7 @@ $deadline = $row["deadline"];
 </HEAD>
 <BODY>
 
-<H1>회원 정보 수정</H1>
+<H1>프로젝트 정보 수정</H1>
 <FORM METHOD="post" ACTION="update_result.php">
 
     프로젝트 이름 : <INPUT TYPE="text" NAME="projectname" VALUE="<?php echo $projectname?>"> <BR>

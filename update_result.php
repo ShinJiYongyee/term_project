@@ -11,7 +11,7 @@ $sql = "UPDATE projectTBL SET projectname='$projectname', intel='$intel', phase=
 $sql .= "employee='$employee', deadline='$deadline' WHERE projectname='$projectname'";
 $ret = mysqli_query($con, $sql);
 
-echo "<H1>회원 정보 수정 결과</H1>";
+echo "<H1>프로젝트 정보 수정 결과</H1>";
 if($ret) {
     echo "데이터가 성공적으로 수정됨.";
 }
