@@ -13,10 +13,11 @@ create table managerTBL(
 );
 
 create table projectTBL(
-	prjectname char(12),
+	projectname char(12),
     intel char(12),
     phase char(12),
     employee char(36),
     deadline date
 );
 
+insert into projectTBL values ("게르마늄팔찌","팔찌 제작","예산확보","김삼식","2024-07-07")
