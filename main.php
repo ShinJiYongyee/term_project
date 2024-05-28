@@ -22,7 +22,6 @@ $username = $_SESSION["username"];
 $sql = "SELECT * FROM managerTBL WHERE username='$username'";
 $result = mysqli_query($con, $sql);
 $user = mysqli_fetch_assoc($result);
-mysqli_close($con);
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +36,7 @@ mysqli_close($con);
 <h2>Welcome, <?php echo $user["username"]; ?></h2>
 <p>Rank: <?php echo $user["emprank"]; ?></p>
 <p>Department: <?php echo $user["department"]; ?></p>
-<a href="logout.php">Logout</a>
-<a href="manage_account.php">Manage Account</a>
+
 <br>
 <div class="warp">
     <div class="intro_bg">
@@ -86,8 +84,13 @@ mysqli_close($con);
             </li>
         </ul>
     </div>
+    <a href="logout.php">Logout</a><br>
+    <a href="manage_account.php">Manage Account</a>
 </div>
 <br>
 </body>
 </html>
 
+<?php
+mysqli_close($con);
+?>
