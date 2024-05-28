@@ -85,6 +85,9 @@ mysqli_close($con);
                 </form>
             </li>
         </ul>
+        <a href="logout.php">Logout</a>
+        <br>
+        <a href="manage_account.php">Manage Account</a>
     </div>
 </div>
 <br>
