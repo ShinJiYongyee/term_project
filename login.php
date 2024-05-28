@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result) {
         $row = mysqli_fetch_assoc($result);
 
-        if (password_verify($password, $row["password"])) {
+        if ($password == $row["password"]) {
             $_SESSION["username"] = $username;
             header("Location: main.php");
         } else {
