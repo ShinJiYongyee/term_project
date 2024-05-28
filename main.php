@@ -9,6 +9,20 @@ if($ret) {
 } else {
     echo "검색 실패";
 }
+session_start();
+
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit();
+}
+
+$con = mysqli_connect("localhost", "cookUser", "1234", "projectDB") or die("MySQL 접속 실패!!");
+$username = $_SESSION["username"];
+
+$sql = "SELECT * FROM managerTBL WHERE username='$username'";
+$result = mysqli_query($con, $sql);
+$user = mysqli_fetch_assoc($result);
+mysqli_close($con);
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +34,11 @@ if($ret) {
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 </head>
 <body>
-<br><br><br><br><br>
+<h2>Welcome, <?php echo $user["username"]; ?></h2>
+<p>Rank: <?php echo $user["emprank"]; ?></p>
+<p>Department: <?php echo $user["department"]; ?></p>
+<a href="logout.php">Logout</a>
+<a href="manage_account.php">Manage Account</a>
 <br>
 <div class="warp">
     <div class="intro_bg">
@@ -48,7 +66,6 @@ if($ret) {
                     echo "<td><a href='delete.php?projectname=".$row['projectname']."'>삭제</a></td>";
                     echo "</tr>";
                 }
-                mysqli_close($con);
                 ?>
             </table>
             <br>
