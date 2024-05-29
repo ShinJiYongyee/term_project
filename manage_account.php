@@ -54,7 +54,7 @@ mysqli_close($con);
     <input type="submit" name="update" value="Update">
     <input type="submit" name="delete" value="Delete Account">
 </form>
-<a href="welcome.php">Back</a>
+<a href="main.php">Back</a>
 </body>
 </html>
 

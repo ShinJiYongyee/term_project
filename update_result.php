@@ -21,5 +21,5 @@ else {
 }
 mysqli_close($con);
 
-echo "<BR> <A HREF='main.html'> <--초기 화면</A> ";
+echo "<BR> <A HREF='main.php'> <--초기 화면</A> ";
 ?>
