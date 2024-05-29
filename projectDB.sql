@@ -14,6 +14,7 @@ create table projectTBL(
 CREATE TABLE managerTBL (
     username VARCHAR(50) NOT NULL primary key ,
     password int(255) NOT NULL,
+    empname varchar(12) not null,
     emprank varchar(12) not null,
     department varchar(12) not null,
     email VARCHAR(100)

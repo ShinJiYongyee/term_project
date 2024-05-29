@@ -83,7 +83,7 @@ mysqli_close($con);
 </head>
 <body>
 <div class="container">
-    <h2>Welcome, <?php echo $user["username"]; ?></h2>
+    <h2>Welcome, <?php echo $user["empname"]; ?></h2>
     <p>Rank: <?php echo $user["emprank"]; ?></p>
     <p>Department: <?php echo $user["department"]; ?></p>
 
