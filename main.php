@@ -101,37 +101,65 @@ mysqli_close($con);
         <?php
         while($row = mysqli_fetch_array($ret)) {
             echo "<tr>";
-            echo "<td>".$row['projectname']."</td>";
-            echo "<td>".$row['intel']."</td>";
-            echo "<td>".$row['phase']."</td>";
-            echo "<td>".$row['employee']."</td>";
-            echo "<td>".$row['deadline']."</td>";
-            echo "<td class='footer'><a href='update.php?projectname=".$row['projectname']."'>수정</a></td>";
+            echo "<td><input type='text' name='projectname' value='".$row['projectname']."' readonly></td>";
+            echo "<td><input type='text' name='intel' value='".$row['intel']."'></td>";
+            echo "<td><select name='phase'>
+                      <option value='절차확립' ".($row['phase'] == '절차확립' ? 'selected' : '').">절차확립</option>
+                      <option value='예산확보' ".($row['phase'] == '예산확보' ? 'selected' : '').">예산확보</option>
+                      <option value='공정확보' ".($row['phase'] == '공정확보' ? 'selected' : '').">공정확보</option>
+                      <option value='원자재준비' ".($row['phase'] == '원자재준비' ? 'selected' : '').">원자재준비</option>
+                      <option value='공정가동' ".($row['phase'] == '공정가동' ? 'selected' : '').">공정가동</option>
+                      <option value='홍보' ".($row['phase'] == '홍보' ? 'selected' : '').">홍보</option>
+                      <option value='상품출시' ".($row['phase'] == '상품출시' ? 'selected' : '').">상품출시</option>
+                      <option value='진행' ".($row['phase'] == '진행' ? 'selected' : '').">진행</option>
+                      <option value='중간평가' ".($row['phase'] == '중간평가' ? 'selected' : '').">중간평가</option>
+                      <option value='계획수정' ".($row['phase'] == '계획수정' ? 'selected' : '').">계획수정</option>
+                      <option value='종결평가' ".($row['phase'] == '종결평가' ? 'selected' : '').">종결평가</option>
+                      <option value='프로젝트종결' ".($row['phase'] == '프로젝트종결' ? 'selected' : '').">프로젝트종결</option>
+                  </select></td>";
+            echo "<td><input type='text' name='employee' value='".$row['employee']."'></td>";
+            echo "<td><input type='date' name='deadline' value='".$row['deadline']."'></td>";
+            echo "<td><button onclick='updateProject(this)'>수정</button></td>";
             echo "<td class='footer'><a href='delete.php?projectname=".$row['projectname']."'>삭제</a></td>";
             echo "</tr>";
         }
         ?>
     </table>
     <br>
-    <ul>
+    <ul class="footer">
         <li><a href="insert.php">새 프로젝트 작성</a></li>
-        <li>
-            <form method="get" action="update.php">
-                <input type="text" name="projectname" placeholder="프로젝트명을 입력해주세요">
-                <input type="submit" value="기존 프로젝트 수정">
-            </form>
-        </li>
-        <li>
-            <form method="get" action="delete.php">
-                <input type="text" name="projectname" placeholder="프로젝트명을 입력해주세요">
-                <input type="submit" value="기존 프로젝트 삭제">
-            </form>
-        </li>
     </ul>
     <div class="footer">
         <a href="logout.php">Logout</a>
         <a href="manage_account.php">Manage Account</a>
     </div>
 </div>
+<script>
+    function updateProject(button) {
+        const row = button.closest('tr');
+        const projectname = row.querySelector('input[name="projectname"]').value;
+        const intel = row.querySelector('input[name="intel"]').value;
+        const phase = row.querySelector('select[name="phase"]').value;
+        const employee = row.querySelector('input[name="employee"]').value;
+        const deadline = row.querySelector('input[name="deadline"]').value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'update_project.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                if (response.status === 'success') {
+                    alert('프로젝트 정보가 성공적으로 업데이트되었습니다.');
+                } else {
+                    alert('업데이트 실패: ' + response.message);
+                }
+            }
+        };
+
+        xhr.send(`projectname=${projectname}&intel=${intel}&phase=${phase}&employee=${employee}&deadline=${deadline}`);
+    }
+</script>
 </body>
 </html>

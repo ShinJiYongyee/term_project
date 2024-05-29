@@ -25,17 +25,38 @@ $projectname = $row['projectname'];
 <HTML>
 <HEAD>
     <META http-equiv="content-type" content="text/html; charset=utf-8">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
 </HEAD>
 <BODY>
-　
-<H1>프로젝트 삭제</H1>
-<FORM METHOD="post" ACTION="delete_result.php">
-    프로젝트명 : <INPUT TYPE="text" NAME="projectname" VALUE=<?php echo $projectname ?> READONLY> <BR>
-    <BR>
-    <BR><BR>
-    위 프로젝트를 삭제하겠습니까?
-    <INPUT TYPE="submit" VALUE="프로젝트 삭제">
-</FORM>
+<div class="container">
+    <H1>프로젝트 삭제</H1>
+    <FORM METHOD="post" ACTION="delete_result.php">
+        프로젝트명 : <INPUT TYPE="text" NAME="projectname" VALUE=<?php echo $projectname ?> READONLY> <BR>
+        <BR>
+        <BR><BR>
+        위 프로젝트를 삭제하겠습니까?
+        <INPUT TYPE="submit" VALUE="프로젝트 삭제">
+    </FORM>
+</div>
+
 
 </BODY>
 </HTML>

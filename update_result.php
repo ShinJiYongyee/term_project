@@ -1,25 +1,25 @@
 <?php
+session_start();
 $con = mysqli_connect("localhost", "cookUser", "1234", "projectDB") or die("MySQL 접속 실패!!");
 
-$projectname = $_POST["projectname"];
-$intel = $_POST["intel"];
-$phase = $_POST["phase"];
-$employee = $_POST["employee"];
-$deadline = $_POST["deadline"];
-
-$sql = "UPDATE projectTBL SET projectname='$projectname', intel='$intel', phase='$phase', ";
-$sql .= "employee='$employee', deadline='$deadline' WHERE projectname='$projectname'";
-$ret = mysqli_query($con, $sql);
-
-echo "<H1>프로젝트 정보 수정 결과</H1>";
-if($ret) {
-    echo "데이터가 성공적으로 수정됨.";
+if (!isset($_SESSION["username"])) {
+    echo json_encode(["status" => "error", "message" => "Unauthorized"]);
+    exit();
 }
-else {
-    echo "데이터 수정 실패!!!"."<BR>";
-    echo "실패 원인 :".mysqli_error($con);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $projectname = mysqli_real_escape_string($con, $_POST["projectname"]);
+    $intel = mysqli_real_escape_string($con, $_POST["intel"]);
+    $phase = mysqli_real_escape_string($con, $_POST["phase"]);
+    $employee = mysqli_real_escape_string($con, $_POST["employee"]);
+    $deadline = mysqli_real_escape_string($con, $_POST["deadline"]);
+
+    $sql = "UPDATE projectTBL SET intel='$intel', phase='$phase', employee='$employee', deadline='$deadline' WHERE projectname='$projectname'";
+    if (mysqli_query($con, $sql)) {
+        echo json_encode(["status" => "success"]);
+    } else {
+        echo json_encode(["status" => "error", "message" => mysqli_error($con)]);
+    }
 }
 mysqli_close($con);
-
-echo "<BR> <A HREF='main.php'> <--초기 화면</A> ";
 ?>
