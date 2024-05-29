@@ -75,6 +75,10 @@ mysqli_close($con);
         .footer a {
             margin: 0 10px;
         }
+        .footer a:hover {
+            color: blue;
+        }
+
     </style>
 </head>
 <body>
@@ -82,10 +86,7 @@ mysqli_close($con);
     <h2>Welcome, <?php echo $user["username"]; ?></h2>
     <p>Rank: <?php echo $user["emprank"]; ?></p>
     <p>Department: <?php echo $user["department"]; ?></p>
-    <div class="footer">
-        <a href="logout.php">Logout</a>
-        <a href="manage_account.php">Manage Account</a>
-    </div>
+
     <h1>프로젝트 검색 결과</h1>
     <table>
         <tr>
@@ -105,8 +106,8 @@ mysqli_close($con);
             echo "<td>".$row['phase']."</td>";
             echo "<td>".$row['employee']."</td>";
             echo "<td>".$row['deadline']."</td>";
-            echo "<td><a href='update.php?projectname=".$row['projectname']."'>수정</a></td>";
-            echo "<td><a href='delete.php?projectname=".$row['projectname']."'>삭제</a></td>";
+            echo "<td class='footer'><a href='update.php?projectname=".$row['projectname']."'>수정</a></td>";
+            echo "<td class='footer'><a href='delete.php?projectname=".$row['projectname']."'>삭제</a></td>";
             echo "</tr>";
         }
         ?>
@@ -127,6 +128,10 @@ mysqli_close($con);
             </form>
         </li>
     </ul>
+    <div class="footer">
+        <a href="logout.php">Logout</a>
+        <a href="manage_account.php">Manage Account</a>
+    </div>
 </div>
 </body>
 </html>
